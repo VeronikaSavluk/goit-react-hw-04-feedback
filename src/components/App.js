@@ -7,9 +7,9 @@ import optionReducer from '../templates/optionreducer';
 import options from '../options.json';
 
 const App = () => {
-  const [good, setGood] = useReducer(optionReducer, 0);
-  const [neutral, setNeutral] = useReducer(optionReducer, 0);
-  const [bad, setBad] = useReducer(optionReducer, 0);
+  const [good, dispatchGood] = useReducer(optionReducer, 0);
+  const [neutral, dispatchNeutral] = useReducer(optionReducer, 0);
+  const [bad, dispatchBad] = useReducer(optionReducer, 0);
 
   const total = good + neutral + bad;
   const positivePercentage = Math.floor(good / total * 100);
@@ -17,15 +17,15 @@ const App = () => {
   const onLeaveFeedback = (e) => {
     switch (e.target.textContent) {
       case options[0]:
-        setGood(1);
+        dispatchGood(1);
         break;
 
       case options[1]:
-        setNeutral(1);
+        dispatchNeutral(1);
         break;
 
       case options[2]:
-        setBad(1);
+        dispatchBad(1);
         break;
       default:
         return;
