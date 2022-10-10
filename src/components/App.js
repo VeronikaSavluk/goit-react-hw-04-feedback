@@ -3,7 +3,7 @@ import Section from './section';
 import FeedbackOptions from './feedbackoptions';
 import Notification from './notification';
 import Statistic from './statistic';
-import optionReducer from '../optionreducer';
+import optionReducer from '../templates/optionreducer';
 import options from '../options.json';
 
 const App = () => {
