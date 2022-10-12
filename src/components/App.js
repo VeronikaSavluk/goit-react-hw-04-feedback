@@ -1,15 +1,14 @@
-import { useReducer } from 'react';
+import { useState } from 'react';
 import Section from './section';
 import FeedbackOptions from './feedbackoptions';
 import Notification from './notification';
 import Statistic from './statistic';
-import optionReducer from '../templates/optionreducer';
 import options from '../options.json';
 
 const App = () => {
-  const [good, dispatchGood] = useReducer(optionReducer, 0);
-  const [neutral, dispatchNeutral] = useReducer(optionReducer, 0);
-  const [bad, dispatchBad] = useReducer(optionReducer, 0);
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
 
   const total = good + neutral + bad;
   const positivePercentage = Math.floor(good / total * 100);
@@ -17,15 +16,15 @@ const App = () => {
   const onLeaveFeedback = (e) => {
     switch (e.target.textContent) {
       case options[0]:
-        dispatchGood(1);
+        setGood(prevState => prevState + 1);
         break;
 
       case options[1]:
-        dispatchNeutral(1);
+        setNeutral(prevState => prevState + 1);
         break;
 
       case options[2]:
-        dispatchBad(1);
+        setBad(prevState => prevState + 1);
         break;
       default:
         return;
